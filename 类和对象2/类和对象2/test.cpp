@@ -271,34 +271,63 @@ using namespace std;
 //	int* ptr2 = (int*)calloc(4, sizeof(int));
 //	int* ptr3 = (int*)realloc(ptr2, sizeof(int)* 4);
 //	free(ptr1);
-//	free(ptr3);		////	cout << sizeof(ptr1) << endl;////	system("pause");
-//	return 0;
-//}
-
-//char* GetMemory(void)
-//{
-//   char p[] = "hello world";
-//   return p;
-//}
-//int main()//返回局部变量或临时变量的地址
-//{
-//	char *str = NULL;
-//	str = GetMemory();
-//	printf(str);//	system("pause");
-//	return 0;
-//}
-
-//void GetMemory(char **p, int num)
-//{
-//	*p = (char *)malloc(num);
-//}
-//int main()//将指针的地址传过去
-//{
-//	char *str = NULL;
-//	GetMemory(&str, 100);
-//	strcpy(str, "hello");
-//	printf(str);
+//	free(ptr3);		
+//
+//	cout << sizeof(ptr1) << endl;
 //
 //	system("pause");
 //	return 0;
-//}
+//}
+
+void GetMemory(char *p)
+{
+	p = (char *)malloc(100);//程序奔溃，str并没有开辟出空间
+}
+void Test(void)
+{
+	char *str = NULL;
+	GetMemory(str);
+	strcpy(str, "hello world");
+	printf(str);
+}
+
+char* GetMemory(void)
+{
+   char p[] = "hello world";
+   return p;
+}
+int main()//返回局部变量或临时变量的地址
+{
+	char *str = NULL;
+	str = GetMemory();
+	printf(str);
+	system("pause");
+	return 0;
+}
+
+void GetMemory(char **p, int num)
+{
+	*p = (char *)malloc(num);
+}
+int main()//将指针的地址传过去，所以程序正常
+{
+	char *str = NULL;
+	GetMemory(&str, 100);
+	strcpy(str, "hello");
+	printf(str);
+
+	system("pause");
+	return 0;
+}
+
+void Test(void)
+{
+	char *str = (char *)malloc(100);//访问非法空间
+	strcpy(str, “hello”);
+	free(str);
+	if (str != NULL)
+	{
+		strcpy(str, “world”);
+		printf(str);
+	}
+}
