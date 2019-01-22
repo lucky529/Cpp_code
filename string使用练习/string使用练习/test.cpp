@@ -119,10 +119,12 @@ void test6()//修饰符
 	//s1.replace(s1.begin() + 1, s1.end(), s3);//利用指针代替
 	//s1.replace(1,3,"world",1,5);//把原字符串1-3的位置替换为s3的pos之后的n位
 
-	swap(s1, s3);//深拷贝
-	s1.swap(s3);//浅拷贝
+	//swap(s1, s3);//深拷贝
+	//s1.swap(s3);//浅拷贝
 
-	cout << s1.c_str() << endl;
+	//cout << s1.c_str() << endl;
+	
+	cout << s1.find('h') << endl;
 }
 
 void test7()//字符串操作
@@ -142,7 +144,7 @@ void test7()//字符串操作
 }
 int main()
 {
-	test7();
+	test6();
 
 	system("pause");
 	return 0;
