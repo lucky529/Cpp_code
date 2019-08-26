@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "多线程交叉打印", "多线程交叉打印\多线程交叉打印.vcxproj", "{DBEED025-D3DF-4036-8066-B9E1CA1009EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBEED025-D3DF-4036-8066-B9E1CA1009EA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DBEED025-D3DF-4036-8066-B9E1CA1009EA}.Debug|Win32.Build.0 = Debug|Win32
+		{DBEED025-D3DF-4036-8066-B9E1CA1009EA}.Release|Win32.ActiveCfg = Release|Win32
+		{DBEED025-D3DF-4036-8066-B9E1CA1009EA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
