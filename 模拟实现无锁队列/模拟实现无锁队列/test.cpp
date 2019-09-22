@@ -64,7 +64,7 @@ public:
 			}
 			else
 			{
-				headvalue = next->_value;
+				headvalue = next->_value;	
 			}
 		} 
 		while (_head.compare_exchange_weak(oldhead, oldhead->_next) != true);
@@ -81,67 +81,67 @@ private:
 	std::atomic<Node*> _head;
 	std::atomic<Node*> _tail;
 };
-//
-//mutex mutx;
-//int main()
-//{
-//	LockFreeQueue<int> lq;
-//	queue<int> nq;
-//	atomic<size_t> n = 100000;
-//
-//	//测试无锁队列
-//	{
-//		size_t costtime = 0;
-//		vector<thread> threads;
-//		for (size_t i = 0; i < 3; ++i)
-//		{
-//			threads.push_back(thread([&]()
-//			{
-//				size_t begin = 0, end = 0;
-//				begin = clock();
-//				for (size_t j = 0; j < n; ++j)
-//				{
-//					lq.Enqueue(j);
-//				}
-//				end = clock();
-//				costtime += (end - begin);
-//			}));
-//		}
-//		for (auto& e : threads)
-//		{
-//			e.join();
-//		}
-//		cout << costtime << endl;
-//	}
-//
-//	//测试有锁队列
-//	{
-//		size_t costtime = 0;
-//		vector<thread> threads;
-//		for (size_t i = 0; i < 3; ++i)
-//		{
-//			threads.push_back(thread([&]()
-//			{
-//				size_t begin = 0, end = 0;
-//				begin = clock();
-//				for (size_t j = 0; j < n; ++j)
-//				{
-//					mutx.lock();
-//					nq.push(j);
-//					mutx.unlock();
-//				}
-//				end = clock();
-//				costtime += (end - begin);
-//			}));
-//		}
-//		for (auto& e : threads)
-//		{
-//			e.join();
-//		}
-//		cout << costtime << endl;
-//	}
-//
-//
-//	system("pause");
-//	return 0;
-//}
+
+mutex mutx;
+int main()
+{
+	LockFreeQueue<int> lq;
+	queue<int> nq;
+	atomic<size_t> n = 100000;
+
+	//测试无锁队列
+	{
+		size_t costtime = 0;
+		vector<thread> threads;
+		for (size_t i = 0; i < 3; ++i)
+		{
+			threads.push_back(thread([&]()
+			{
+				size_t begin = 0, end = 0;
+				begin = clock();
+				for (size_t j = 0; j < n; ++j)
+				{
+					lq.Enqueue(j);
+				}
+				end = clock();
+				costtime += (end - begin);
+			}));
+		}
+		for (auto& e : threads)
+		{
+			e.join();
+		}
+		cout << costtime << endl;
+	}
+
+	//测试有锁队列
+	{
+		size_t costtime = 0;
+		vector<thread> threads;
+		for (size_t i = 0; i < 3; ++i)
+		{
+			threads.push_back(thread([&]()
+			{
+				size_t begin = 0, end = 0;
+				begin = clock();
+				for (size_t j = 0; j < n; ++j)
+				{
+					mutx.lock();
+					nq.push(j);
+					mutx.unlock();
+				}
+				end = clock();
+				costtime += (end - begin);
+			}));
+		}
+		for (auto& e : threads)
+		{
+			e.join();
+		}
+		cout << costtime << endl;
+	}
+
+
+	system("pause");
+	return 0;
+}
